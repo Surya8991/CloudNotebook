@@ -1,55 +1,88 @@
 import NoteContext from "./noteContext";
 import { useState } from "react";
 
-const NoteState = (props)=>{
-    const stateInitial=[
-        {
-          "_id": "64117b8acb712c9e7a55ce2e",
-          "title": "1st note is Updated",
-          "description": "1st Note indfsgfdddfgdfdfgfghtesrgdhftdrtdhrtetg",
-          "tag": "Personal",
-          "date": "2023-03-15T08:02:18.769Z",
-          "__v": 0
-        },
-        {
-          "_id": "64117bb1cb712c9e7a55ce36",
-          "title": "Ramesh 1st Note",
-          "description": "1st Note in DB dfsgfdddfgdfdfgfghtesrgdhftdrtdhrtetg",
-          "tag": "Personal",
-          "date": "2023-03-15T08:02:57.513Z",
-          "__v": 0
-        },
-        {
-          "_id": "641206dbcfcf15f200d54c69",
-          "title": "Ramesh 13st Note",
-          "description": "1st Note in DB dfsgfdddfgdfdfgfghtesrgdhftdrtdhrtetg",
-          "tag": "Personal",
-          "date": "2023-03-15T17:56:43.063Z",
-          "__v": 0
-        },
-        {
-          "_id": "641206e0cfcf15f200d54c6b",
-          "title": "ddsdsds",
-          "description": "1st Note in DB dfsgfdddfgdfdfgfghtesrgdhftdrtdhrtetg",
-          "tag": "Personal",
-          "date": "2023-03-15T17:56:48.941Z",
-          "__v": 0
-        },
-        {
-          "_id": "641206e6cfcf15f200d54c6d",
-          "title": "fsfsaeshgdsfdbg",
-          "description": "1st Note in DB dfsgfdddfgdfdfgfghtesrgdhftdrtdhrtetg",
-          "tag": "Personal",
-          "date": "2023-03-15T17:56:54.318Z",
-          "__v": 0
-        }
-      ]
-    const [notes, setNotes] = useState(stateInitial)
-    return (
-        <NoteContext.Provider value={{notes,stateInitial}}>
-            {props.children}
-        </NoteContext.Provider>
-    )
+const NoteState = (props) => {
+  const notesInitial = [
+    {
+      "_id": "61322f195153781a8ca8d0e06",
+      "user": "6131dc5e3e4037cd4734a066",
+      "title": "My Title",
+      "description": "Please wake up early",
+      "tag": "personal",
+      "date": "2021-09-03T14:20:09.509Z",
+      "__v": 0
+    },
+    {
+      "_id": "61322f195531781a8ca8d0e08",
+      "user": "6131dc5e3e4037cd4734a066",
+      "title": "My Title",
+      "description": "Please wake up early",
+      "tag": "personal",
+      "date": "2021-09-03T14:20:09.668Z",
+      "__v": 0
+    },
+    {
+      "_id": "61322f19553781a8ca8d0e081",
+      "user": "6131dc5e3e4037cd4734a066",
+      "title": "My Title",
+      "description": "Please wake up early",
+      "tag": "personal",
+      "date": "2021-09-03T14:20:09.668Z",
+      "__v": 0
+    },
+    {
+      "_id": "61322f19553781a8ca8d0e082",
+      "user": "6131dc5e3e4037cd4734a066",
+      "title": "My Title",
+      "description": "Please wake up early",
+      "tag": "personal",
+      "date": "2021-09-03T14:20:09.668Z",
+      "__v": 0
+    },
+    {
+      "_id": "61322f119553781a8ca8d0e083",
+      "user": "6131dc5e3e4037cd4734a066",
+      "title": "My Title",
+      "description": "Please wake up early",
+      "tag": "personal",
+      "date": "2021-09-03T14:20:09.668Z",
+      "__v": 0
+    },
+  ]
+  const [notes, setNotes] = useState(notesInitial)
+
+
+  // Add a Note
+  const addNote = (title, description, tag) => {
+    // TODO: API Call
+    console.log("Adding a new note")
+    const note = {
+      "_id": "61322f119553781a8ca8d0e083",
+      "user": "6131dc5e3e4037cd4734a0664",
+      "title": title,
+      "description": description,
+      "tag": tag,
+      "date": "2021-09-03T14:20:09.668Z",
+      "__v": 0
+    };
+    setNotes(notes.concat(note))
+  }
+
+  // Delete a Note
+  const deleteNote = (id) => {
+    const newNote = notes.filter((note) => { return note._id !== id })
+    setNotes(newNote)
+  }
+  // Edit a Note
+  const editNote = () => {
+
+  }
+
+  return (
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
+      {props.children}
+    </NoteContext.Provider>
+  )
 }
 
 export default NoteState;

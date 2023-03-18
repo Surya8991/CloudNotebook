@@ -1,12 +1,14 @@
 import React, {useEffect} from 'react'
 import { Link, useLocation } from "react-router-dom";
+import { Alert } from './Alert';
 
 const Navbar = () => {
     let location = useLocation();
     useEffect(() => {
-        console.log(location.pathname);
       }, [location]);
     return (
+        <>
+       
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">iNotebook 📕</Link>
@@ -30,6 +32,8 @@ const Navbar = () => {
                 </div>
             </div>
         </nav>
+            <Alert message="Welcome to iNotebook"/>
+        </>
     )
 }
 
