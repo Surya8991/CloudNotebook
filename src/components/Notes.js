@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import noteContext from '../context/notes/noteContext'
 import Noteitem from './Noteitem'
-import AddNotes from './AddNotes'
+import AddNotes from '../components/AddNote'
 
 
 function Notes(props) {
