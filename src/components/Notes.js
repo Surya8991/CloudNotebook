@@ -2,18 +2,24 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from "../context/notes/noteContext"
 import Noteitem from './Noteitem';
 import AddNote from '../components/AddNotes';
-
+import { useNavigate } from 'react-router-dom';
 const Notes = (props) => {
+    const navigate = useNavigate();
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
-    useEffect(() => {
-        getNotes()
-        // eslint-disable-next-line
-    }, [])
     const ref = useRef(null)
     const refClose = useRef(null)
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            getNotes();
+            navigate('/')
+        } else {
+            navigate('/login');
+        }
+    }, [navigate, getNotes]);
     const updateNote = (currentNote) => {
         ref.current.click();
         setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
