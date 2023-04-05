@@ -7,18 +7,25 @@ const NoteState = (props) => {
   const [notes, setNotes] = useState(notesInitial)
 
   // Get all Notes
-  const getNotes = async () => {
-    // API Call 
-    const response = await fetch(`${host}/api/notes/fetchallnotes`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        "auth-token": localStorage.getItem('token')
-      }
-    });
-    const note = await response.json()
-    setNotes(note)
+  // Get all Notes
+const getNotes = async () => {
+  // API Call 
+  const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      "auth-token": localStorage.getItem('token')
+    }
+  });
+  if(response.ok){
+const note = await response.json()
+  setNotes(note)
   }
+  else {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+}
 
   // Add a Note
   const addNote = async (title, description, tag) => {
@@ -62,7 +69,6 @@ const NoteState = (props) => {
       body: JSON.stringify({title, description, tag})
     });
     const json = response.json();
-    console.log(json)
     let newNote=JSON.parse(JSON.stringify(notes))
     // Logic to edit in client
     for (let index = 0; index < newNote.length; index++) {
