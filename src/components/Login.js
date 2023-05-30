@@ -47,6 +47,7 @@ function Login(props) {
             required
             value={credentials.email}
             onChange={onChange}
+            placeholder='Enter Your Email Id here'
           />
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
@@ -65,6 +66,7 @@ function Login(props) {
             required
             value={credentials.password}
             onChange={onChange}
+            placeholder='Enter Your Password Here'
           />
         </div>
         <button type="submit" className="btn btn-primary">

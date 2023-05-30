@@ -69,6 +69,7 @@ const note = await response.json()
       body: JSON.stringify({title, description, tag})
     });
     const json = response.json();
+    console.log(json)
     let newNote=JSON.parse(JSON.stringify(notes))
     // Logic to edit in client
     for (let index = 0; index < newNote.length; index++) {
